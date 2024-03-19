@@ -33,6 +33,11 @@ button.delete {
   color: white;
 }
 
+button.edit {
+  background-color: blue;
+  color: white;
+}
+
 .app {
   margin: 0 auto;
   max-width: 1200px;

@@ -43,12 +43,32 @@ function PlantPage() {
       })
     })
   }
+
+  function editPlant(plant, id){
+    fetch(`http://localhost:6001/plants/${id}`,{
+      method:"PATCH",
+      headers:{
+        "Content-Type": "Application/JSON"
+      },
+      body: JSON.stringify(plant)
+    })
+    .then(r=>r.json())
+    .then(data=>{
+      console.log(data)
+      fetch('http://localhost:6001/plants')
+      .then(r=>r.json())
+      .then(data=>{
+        console.log(data)
+        setPlants(data)
+      })
+    })
+  } 
   
   return (
     <main>
       <NewPlantForm addPlant={addPlant}/>
       <Search setSearch={setSearch} />
-      <PlantList search={search} plants={plants} deletePlant={deletePlant}/>
+      <PlantList search={search} plants={plants} deletePlant={deletePlant} editPlant={editPlant} />
     </main>
   );
 }
